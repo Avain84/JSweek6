@@ -34,6 +34,7 @@ let data = [
 */
 // DOM
 // 表單區
+const addTicketForm = document.querySelector(".addTicket-form");
 const ticketName = document.querySelector("#ticketName");
 const ticketNameMessage = document.querySelector("#ticketName-message");
 const ticketImgUrl = document.querySelector("#ticketImgUrl");
@@ -119,14 +120,14 @@ axios.get('https://raw.githubusercontent.com/hexschool/js-training/main/travelAP
     // 新增資料按鈕監聽
     addTicketbtn.addEventListener("click",() => {
       let addData = {
-        "id": data.length,
-        "name": ticketName.value,
-        "imgUrl": ticketImgUrl.value,
-        "area": ticketRegion.value,
-        "description": ticketDescription.value,
-        "group": ticketNum.value,
-        "price": ticketPrice.value,
-        "rate": ticketRate.value
+        id: data.length,
+        name: ticketName.value,
+        imgUrl: ticketImgUrl.value,
+        area: ticketRegion.value,
+        description: ticketDescription.value,
+        group: ticketNum.value,
+        price: ticketPrice.value,
+        rate: ticketRate.value
       };
       
       // 要全部都有資料才會 push Message
@@ -178,32 +179,10 @@ axios.get('https://raw.githubusercontent.com/hexschool/js-training/main/travelAP
       }else{
         data.push(addData);
       }
-      // 要全部都有資料才會 push
-      /*
-      if(addData.name !== "" && addData.imgUrl !== "" && addData.area !== "" && addData.description !== "" && addData.group !== "" && addData.price !== "" && addData.rate !== ""){
-        if(addData.rate > 10 || addData.rate < 1){
-          alert(`套票星級區間為 1-10 分`);
-          return ;
-        }
-        if(addData.description.length > 100 ){
-          alert(`套票描述不得超過100字`);
-          return ;
-        }
-        data.push(addData);
-      }else{
-        alert("請確認是否所有資料都有正確輸入");
-        return ;
-      }
-      */
+      
       // 新增資料後更新下方資料並清空表單
       showAndChange(data);
-      ticketName.value = null;
-      ticketImgUrl.value = null;
-      ticketRegion.value = "";
-      ticketPrice.value = null;
-      ticketNum.value = null;
-      ticketRate.value = null;
-      ticketDescription.value = null;
+      addTicketForm.reset();
     });
 
     // 搜尋區篩選 
